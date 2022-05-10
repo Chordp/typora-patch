@@ -1,22 +1,34 @@
-typora Cracker (饼干)
+# typora Cracker
+
 一个typora的解包&解密，打包&加密工具
 
-敬告
-请注意： typoraCracker不会提供破解相关支持，包括但不限于思路、流程、成品。
+## 敬告
 
+**请注意：** typoraCracker不会提供破解相关支持，包括但不限于思路、流程、成品。
+
+```
 仅供学习和讨论，请不要从事任何非法行为。
 由此产生的任何问题都将由用户（您）承担。
-Features
-支持版本1.0.0以上(至少现在是这样)
-测试通过平台：Win/Ubuntu
-食用方式
-pip install -r requirements.txt
-python typora.py --help
-阅读帮助文档及使用。
-做你想做的事。
-打包并替换原目录下的 app.asar。
-享受成果。
-示例
+```
+
+## Features
+
+- 支持版本1.0.0以上(至少现在是这样)
+- 测试通过平台：Win/Ubuntu
+
+## 食用方式
+
+1. `pip install -r requirements.txt`
+2. `python typora.py --help`
+3. 阅读帮助文档及使用。
+4. 做你想做的事。
+5. 打包并替换原目录下的 app.asar。 
+6. 享受成果。
+
+
+## 示例
+
+```shell
 > python typora.py --help
 usage: typora.py [-h] [-u] [-f] asarPath dirPath
 
@@ -46,5 +58,7 @@ XXXXXX-XXXXXX-XXXXXX-XXXXXX
 # (input info)
 email: crack@example.com
 serial: XXXXXX-XXXXXX-XXXXXX-XXXXXX
-LICENSE (许可证)
-MIT LICENSE (许可证)
+```
+
+## LICENSE
+ MIT LICENSE
