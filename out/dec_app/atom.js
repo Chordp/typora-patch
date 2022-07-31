@@ -936,6 +936,7 @@ module.exports = function (k) {
             };
             var t = null;
             const G = async function (e) {
+                r = true
                 if (S = new Date, null == t) return (t = v.showPanelWindow({
                     width: 525,
                     height: 420,
@@ -1022,6 +1023,7 @@ module.exports = function (k) {
                             type: global.devVersion ? "dev" : "",
                             force: n
                         };
+
                         return await X(await Buffer.from(JSON.stringify(t), "utf8").toString("base64")) ? [!0, ""] : [!1, "Please input a valid license code"];
 
                         // JSON.stringify(t);
@@ -1097,6 +1099,7 @@ module.exports = function (k) {
                 }), v.on("make-window", e => {
                     Z()
                 })
+            }, e.showLicensePanel = G, e.showWelcomePanel = async function () {
             }, e.showLicensePanel = G, e.showWelcomePanel = async function () {
                 if (S = new Date, null == n) return (n = v.showPanelWindow({
                     width: 760,

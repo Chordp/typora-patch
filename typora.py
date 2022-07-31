@@ -28,9 +28,8 @@ if DEBUG:
 else:
     log.add(sys.stderr, level="INFO")
 
-AES_KEY = struct.pack("<4Q", *[0x2cf3148f3552b353 ,0xf06a051f31b90ed0 ,0x5dd4f2f7949fcf1f ,0x108b6cc5f4e2b2b1])
-AES_IV = struct.pack("<2Q", *[0x5387fa1533706964 ,0x53f8240ed05f336d])
-
+AES_KEY = struct.pack("<4Q", *[0x404DB15F7EB71878 ,0xC1155AACE2431152 ,0xF71F43410097487A ,0xA194667CD5A76E6E])
+AES_IV = struct.pack("<2Q", *[0x2FBAF9399FA0D979 ,0x86C521669AF725E4])
 
 def _mkDir(_path):
     if not exists(_path):
@@ -44,11 +43,15 @@ def _mkDir(_path):
 
 def decScript(b64: bytes, prettify: bool):
     lCode = b64decode(b64)
+    print("%x" % lCode[-1])
+    lCode = lCode[0:-1]
     # iv: the first 16 bytes of the file
 
     # cipher text
 
     # AES 256 CBC
+    #aesIv = urandom(16)
+    # print(len(lCode))
     ins = AES.new(key=AES_KEY, iv=AES_IV, mode=AES.MODE_CBC)
     code = unpad(ins.decrypt(lCode), 16, 'pkcs7')
     if prettify:
@@ -103,14 +106,21 @@ def extractWdec(asarPath, path, prettify):
     rmtree(path)
     log.debug("remove temp dir")
 
-
 def encScript(_code: bytes, compress):
     if compress:
         _code = jsmin(_code.decode(), quote_chars="'\"`").encode()
-    aesIv = AES_IV
+    
+    """
+    0000023F43FBFC60  A57157DA85D466E0 F0E9E23CA5436726  
+
+    """
+    aesIv = struct.pack("<2Q", *[0xA57157DA85D466E0 ,0xF0E9E23CA5436726])
+
     cipherText = _code
     ins = AES.new(key=AES_KEY, iv=aesIv, mode=AES.MODE_CBC)
     enc = ins.encrypt(pad(cipherText, 16, 'pkcs7'))
+    enc = enc + b'\xcb'
+    print(len(enc))
     lCode = b64encode(enc)
     return lCode
 
